@@ -1,0 +1,101 @@
+<div class="row shadow-md bg-dark">
+    <a href="/" class='btn  btn-primary float-right col'>products</a>
+    <a href="/index/addproduct" class='btn btn-success ms-3 float-right col'>add product</a>
+    <a href="/order" class='btn btn-danger ms-3 float-right col'>orders</a>
+    <a href="/order/addorder" class='btn btn-secondary ms-3 float-right col'>add order</a>
+</div>
+<div class="row">
+    <!-- <div class="col-6">
+        <div class='pt-5'>
+            <a href="#" data-status='all' class='btn statusFilter'>All</a>
+            <a href="#" data-status='paid' class='btn statusFilter'>Paid</a>
+            <a href="#" data-status='processing' class='btn statusFilter'>Processing</a>
+            <a href="#" data-status='dispatched' class='btn statusFilter'>Dispatched</a>
+            <a href="#" data-status='shipped' class='btn statusFilter'>Shipped</a>
+            <a href="#" data-status='refunded' class='btn statusFilter'>Refunded</a>
+        </div>
+    </div> -->
+    <div class="col-6">
+        <form action="" method='get' class='pt-5'>
+            <label for="statusfilter">select status
+                <select name="statusfilter" id="">
+                    <option value="all" name='statusfilter'>all</option>
+                    <option value="paid" name='statusfilter'>paid</option>
+                    <option value="processing" name='statusfilter'>processing</option>
+                    <option value="dispatched" name='statusfilter'>dispatched</option>
+                    <option value="shipped" name='statusfilter'>shipped</option>
+                    <option value="refunded" name='statusfilter'>refunded</option>
+                </select>
+            </label>
+            <label for="date">Select Date range
+                <select name="date">
+                    <option name='date' value="<?php echo date_format(date_sub(date_create(date("Y-m-d")), date_interval_create_from_date_string("5000 days")), "Y-m-d"); ?>">All</option>
+                    <option name='date' value="<?php echo date("Y-m-d") ?>">Today</option>
+                    <option name='date' value="<?php echo date_format(date_sub(date_create(date("Y-m-d")), date_interval_create_from_date_string("7 days")), "Y-m-d"); ?>">This week</option>
+                    <option name='date' value="<?php echo date_format(date_sub(date_create(date("Y-m-d")), date_interval_create_from_date_string("30 days")), "Y-m-d"); ?>">This month</option>
+                </select></label>
+            <input type='submit' value="apply" name='btn' class="btn btn-dark">
+
+            <p>enter custome date in YYYY-MM-DD format</p>
+            <label for="start"><input type="text" name="start" placeholder="YYYY-MM-DD "></label>
+            <label for="end"><input type="text" name="end" placeholder="YYYY-MM-DD "></label>
+            <input type="submit" value="custom" name='btn' class="btn btn-dark">
+        </form>
+    </div>
+
+</div>
+<table class="table">
+    <thead class='bg-dark text-white fw-bold '>
+        <tr>
+            <th scope="col">customer name</th>
+            <th scope="col">product_id</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">status</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        <?php
+
+        foreach ($orders as $idx => $order) {
+        ?>
+
+            <tr>
+
+                <td>
+                    <p><?php echo $order->name ?></p>
+                </td>
+                <td>
+                    <p><?php echo $order->product_id ?></p>
+                </td>
+                <td>
+                    <p><?php echo $order->quantity ?></p>
+                </td>
+                <td>
+
+                    <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <?php echo $order->status ?>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/order/updatestatus?id=<?php echo $order->_id . "&status=paid"; ?>">Paid</a>
+                            <a class="dropdown-item" href="/order/updatestatus?id=<?php echo $order->_id . "&status=processing"; ?>">Processing</a>
+                            <a class="dropdown-item" href="/order/updatestatus?id=<?php echo $order->_id . "&status=dispatched"; ?>">Dispatched</a>
+                            <a class="dropdown-item" href="/order/updatestatus?id=<?php echo $order->_id . "&status=shipped"; ?>">Shipped</a>
+                            <a class="dropdown-item" href="/order/updatestatus?id=<?php echo $order->_id . "&status=refunded"; ?>">Refunded</a>
+                        </div>
+                    </div>
+
+
+                </td>
+
+
+
+
+            </tr>
+        <?php }
+        ?>
+    </tbody>
+</table>

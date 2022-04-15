@@ -53,6 +53,9 @@
     $container->set('response', function () {
         return new Response();
     });
+
+
+    //setting connection with mongodb
     $container->set(
         'mongo',
         function () {
@@ -63,6 +66,7 @@
         true
     );
 
+    //db helper
     $container->set('dbHelper', function () {
         return new \App\Components\MongoHelper();
     }, true);

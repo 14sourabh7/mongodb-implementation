@@ -4,26 +4,32 @@ var inputFields = [
   { label: "price", type: "number" },
   { label: "stock", type: "number" },
 ];
-
+var additional = [];
+var variation = [];
 $(document).ready(function () {
   $("#addBtn").click(function () {
     var label = $("#addLabel").val();
     var type = $("#addType").val();
     if (label && type) {
-      var html = `
+      if (additional.indexOf(label) === -1) {
+        additional.push(label);
+        var html = `
            <div class="mb-3">
              <label for="${label}" class="form-label">${label}</label>
             <input type="${type}" class="form-control" name='additional[${label}]' required>
-            <button class='deleteAdd'>delete</button>
+            <button class='deleteAdd' data-idx=${additional.indexOf(
+              label
+            )}>delete</button>
         </div>
         `;
-      $("#addForm").append(html);
+        $("#addForm").append(html);
+      }
     }
   });
 
   $("#addForm").on("click", ".deleteAdd", function () {
-    var id = $(this).data("id");
     $(this).parent().remove();
+    additional.splice($(this).data("idx"), 1);
   });
 
   $("#addVar").click(function () {
@@ -32,21 +38,26 @@ $(document).ready(function () {
     var price = $("#variationPrice").val();
 
     if (label && value && price) {
-      console.log("cliked");
-      var html = `
+      if (variation.indexOf(value) === -1) {
+        variation.push(value);
+        var html = `
            <div class="mb-3">
             <label for="${label}" class="form-label">${label}</label>
             <input type="text" class="form-control" name='variation[${label}][${value}][value]' value='${value}' required>
 <input type="number" class="form-control" name='variation[${label}][${value}][price]' value='${price}' required>
-            <button class='varDel'>delete</button>
+            <button class='varDel' data-idx=${additional.indexOf(
+              value
+            )}>delete</button>
         </div>
         `;
-      $("#addForm").append(html);
+        $("#addForm").append(html);
+      }
     }
   });
 
   $("#addForm").on("click", ".varDel", function (e) {
     $(this).parent().remove();
+    variation.splice($(this).data("idx"), 1);
   });
 
   $(".viewProduct").click(function () {
