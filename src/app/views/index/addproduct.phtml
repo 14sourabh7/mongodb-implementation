@@ -1,0 +1,108 @@
+<div class="row shadow-md bg-dark">
+    <a href="/" class='btn  btn-primary float-right col-6'>home</a>
+    <a href="/index/addproduct" class='btn btn-success ms-3 float-right col-6'>add</a>
+</div>
+
+<h2>Add Product</h2>
+<div class='row'>
+    <div class="col-7 ">
+        <form action="" method="post">
+            <div id='addForm'>
+                <div class="mb-3">
+                    <label for="name" class="form-label">name</label>
+                    <input type="text" class="form-control" name="name" aria-describedby="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category Name</label>
+                    <input type="text" class="form-control" name='category' required>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" class="form-control" name='price' required>
+                </div>
+                <div class="mb-3">
+                    <label for="stock" class="form-label">Stock</label>
+                    <input type="number" class="form-control" name='stock' required>
+                </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary btn-lg">ADD Product</button>
+        </form>
+
+    </div>
+
+    <div class="col-1"></div>
+
+    <div class='col-4 shadow-md bg-secondary'>
+
+        <h4>add additonal details</h4>
+        <div class="row g-3">
+
+            <div class="col-sm-7">
+                <div class="form-outline">
+                    <input type="text" id="addLabel" class="form-control" />
+                    <label class="form-label" for="form10Example1">label</label>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-outline">
+                    <select name="type" id="addType">
+                        <option value="text" name='type'>text</option>
+                        <option value='number' name='type'>number</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-outline">
+                    <input type="button" id="addBtn" class='btn btn-success' value="Add">
+                </div>
+            </div>
+        </div>
+        <!--  -->
+
+        <hr>
+
+        <div class="row g-3 shadow-md bg-secondary">
+            <div class="col-sm-7">
+                <h4>add Variations</h4>
+            </div>
+
+
+            <div class="col-sm-7">
+                <div class="form-outline">
+                    <input type="text" id="variationLabel" class="form-control" />
+                    <label class="form-label" for="form10Example1">variation label</label>
+                </div>
+            </div>
+
+
+            <div class="col-sm-7">
+                <div class="form-outline">
+                    <input type="text" id="variationValue" class="form-control" />
+                    <label class="form-label" for="form10Example1">varaiation value</label>
+                </div>
+            </div>
+
+            <div class="col-sm-7">
+                <div class="form-outline">
+                    <input type="number" id="variationPrice" class="form-control" />
+                    <label class="form-label" for="form10Example1">varaiation price</label>
+                </div>
+            </div>
+
+            <div class="col-sm-7">
+                <div class="form-outline">
+                    <input type="button" id="addVar" class='btn btn-success' value="addVariation">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../public/js/script.js"></script>
