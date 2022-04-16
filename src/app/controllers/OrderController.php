@@ -13,20 +13,25 @@ class OrderController extends Controller
             $orders = $this->dbHelper->searchOrderByName(
                 $this->request->get('search')
             );
-        } else if ($this->request->get('btn') == 'apply') {
+        } else if ($this->request->get('statusfilter')) {
+            $startdate = $this->request->get('start');
+            $enddate = $this->request->get('end');
 
-            // calling date filter function of db
-            $orders = $this->dbHelper->orderByDate(
-                $this->request->get('date'),
-                date('Y-m-d'),
-                $this->request->get('statusfilter')
-            );
+
+            if ($startdate && $enddate) {
+                $orders = $this->dbHelper->orderByDate($startdate, $enddate, $this->request->get('statusfilter'));
+            } else {
+                $orders = $this->dbHelper->orderByDate(
+                    $this->request->get('date'),
+                    date('Y-m-d'),
+                    $this->request->get('statusfilter')
+                );
+            }
         } else if ($this->request->get('btn') == 'custom') {
 
             //custom date filter
-            $startdate = $this->request->get('start');
-            $enddate = $this->request->get('end');
-            $orders = $this->dbHelper->orderByDate($startdate, $enddate, $this->request->get('statusfilter'));
+
+
         } else {
 
             //bydefault displaying all orders

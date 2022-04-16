@@ -36,6 +36,14 @@ $(document).ready(function () {
       $(".variation").html("");
     }
   });
+
+  $("#date").change(function () {
+    if ($(this).val() == "custom") {
+      $(".customDate").attr("disabled", false);
+    } else {
+      $(".customDate").attr("disabled", true);
+    }
+  });
 });
 
 function displayVariation(variation) {
