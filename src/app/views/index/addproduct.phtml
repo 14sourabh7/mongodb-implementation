@@ -79,14 +79,6 @@
                 </div>
             </div>
 
-
-            <div class="col-sm-7">
-                <div class="form-outline">
-                    <input type="text" id="variationValue" class="form-control" />
-                    <label class="form-label" for="form10Example1">varaiation value</label>
-                </div>
-            </div>
-
             <div class="col-sm-7">
                 <div class="form-outline">
                     <input type="number" id="variationPrice" class="form-control" />
@@ -94,10 +86,21 @@
                 </div>
             </div>
 
-            <div class="col-sm-7">
+            <div class="col-12">
+                <div class='row'>
+                    <input type="text" id="variationValueName" placeholder="Name" class="form-control col mx-1" />
+                    <input type="text" id="variationValue" placeholder="Value" class="form-control col mx-1" />
+                    <button type="button" id="addField" class='btn btn-success'>add field</button>
+                </div>
+            </div>
+            <div class="col-sm-7 py-3">
                 <div class="form-outline">
                     <input type="button" id="addVar" class='btn btn-success' value="addVariation">
                 </div>
+            </div>
+
+            <div class="col-sm-7 py-3" id="variationHtml">
+
             </div>
         </div>
     </div>

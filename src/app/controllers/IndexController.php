@@ -19,7 +19,6 @@ class IndexController extends Controller
 
         //handling delete  and update request
         if ($this->request->getPost('btn') == 'update') {
-
             $this->dbHelper->updateProduct($this->request->getPost());
         } else if ($this->request->getPost('btn') == 'delete') {
 
@@ -39,6 +38,7 @@ class IndexController extends Controller
     public function addproductAction()
     {
         $check = $this->request->isPost();
+
         if ($check) {
 
             $this->dbHelper->addProduct($this->request->getPost());

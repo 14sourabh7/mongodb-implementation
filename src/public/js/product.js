@@ -6,6 +6,7 @@ var inputFields = [
 ];
 var additional = [];
 var variation = [];
+var variationFields = [];
 $(document).ready(function () {
   $("#addBtn").click(function () {
     var label = $("#addLabel").val();
@@ -14,7 +15,7 @@ $(document).ready(function () {
       if (additional.indexOf(label) === -1) {
         additional.push(label);
         var html = `
-           <div class="mb-3">
+          
              <label for="${label}" class="form-label">${label}</label>
             <input type="${type}" class="form-control" name='additional[${label}]' required>
             <button class='deleteAdd' data-idx=${additional.indexOf(
@@ -36,23 +37,55 @@ $(document).ready(function () {
     var label = $("#variationLabel").val();
     var value = $("#variationValue").val();
     var price = $("#variationPrice").val();
-
+    var fields = "";
     if (label && value && price) {
-      if (variation.indexOf(value) === -1) {
-        variation.push(value);
-        var html = `
+      if (variation.indexOf(label) === -1) {
+        variation.push(label);
+        for (var i = 0; i < variationFields.length; i++) {
+          fields += `  <label>${variationFields[i].name}
+          <input 
+          type="text" 
+          class="form-control" 
+          name='variation[${label}][${variationFields[i].name}]' value='${variationFields[i].value}' required></label>`;
+        }
+        var html =
+          `
            <div class="mb-3">
             <label for="${label}" class="form-label">${label}</label>
-            <input type="text" class="form-control" name='variation[${label}][${value}][value]' value='${value}' required>
-<input type="number" class="form-control" name='variation[${label}][${value}][price]' value='${price}' required>
+            ` +
+          fields +
+          `
+            
+            <label>price
+<input type="number" class="form-control" name='variation[${label}][price]' value='${price}' required></label>
             <button class='varDel' data-idx=${additional.indexOf(
               value
             )}>delete</button>
         </div>
         `;
         $("#addForm").append(html);
+        variationFields = [];
       }
     }
+  });
+  $("#addField").click(function () {
+    var name = $("#variationValueName").val();
+    var value = $("#variationValue").val();
+    var html = "";
+    if (name && value) {
+      var check = variationFields.filter((x) => x.name == name);
+      if (check.length < 1) {
+        variationFields.push({ name: name, value: value });
+        html += `<p class='bg-light'>${name} - ${value} <span class='text-danger' id='variationFieldDel' data-name="${name}">delete</span> </p> `;
+      }
+    }
+    $("#variationHtml").append(html);
+  });
+
+  $("#variationHtml").on("click", "#variationFieldDel", function () {
+    var name = $(this).data("name");
+    variationFields = variationFields.filter((x) => x.name !== name);
+    $(this).parent().remove();
   });
 
   $("#addForm").on("click", ".varDel", function (e) {
@@ -125,11 +158,10 @@ $(document).ready(function () {
         Object.entries(data.variation).map(function (item) {
           html += ` <h5>${item[0]}</h5><table class='table'>`;
           Object.entries(item[1]).map(function (it) {
-            console.log(item);
             html += `
-            <tr> <th> ${item[0]}</th><td><input type="text" name=variation[${item[0]}][${it[1].value}][value] value="${it[1].value}"> </td> 
-            &nbsp;&nbsp;&nbsp;&nbsp; 
-            <th>price</th><td><input type="number" name=variation[${item[0]}][${it[1].value}][price] value="${it[1].price}"> </td>
+            <tr> <th> ${it[0]}</th><td><input 
+            type="text" 
+              name='variation[${item[0]}][${it[0]}]' value='${it[1]}'> </td> 
             `;
           });
           html += `</table>`;
