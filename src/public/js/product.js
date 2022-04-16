@@ -65,6 +65,7 @@ $(document).ready(function () {
         `;
         $("#addForm").append(html);
         variationFields = [];
+        $("#variationHtml").html("");
       }
     }
   });
