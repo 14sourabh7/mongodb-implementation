@@ -54,7 +54,7 @@
         return new Response();
     });
 
-
+    $container->set('locale', (new \App\Components\Locale())->getTranslator());
     //setting connection with mongodb
     $container->set(
         'mongo',

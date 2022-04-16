@@ -1,15 +1,15 @@
 <div class="row shadow-md bg-dark">
-    <a href="/" class='btn  btn-primary float-right col'>products</a>
-    <a href="/index/addproduct" class='btn btn-success ms-3 float-right col'>add product</a>
-    <a href="/order" class='btn btn-danger ms-3 float-right col'>orders</a>
-    <a href="/order/addorder" class='btn btn-secondary ms-3 float-right col'>add order</a>
+    <a href="/" class='btn  btn-primary float-right col'><?php echo $locale->_('products')  ?></a>
+    <a href="/index/addproduct" class='btn btn-success ms-3 float-right col'><?php echo $locale->_('add') . " " . $locale->_('product') ?></a>
+    <a href="/order" class='btn btn-danger ms-3 float-right col'><?php echo $locale->_('orders') ?></a>
+    <a href="/order/addorder" class='btn btn-secondary ms-3 float-right col'><?php echo $locale->_('add') . " " . $locale->_('order') ?></a>
 </div>
 
 
 <form action="" method='get' class='pt-5'>
     <div class="row">
         <div class="col-4">
-            <label for="date">Select Date range
+            <label for="date"><?php echo $locale->_('dateselect') ?>
                 <select name="date" id='date'>
                     <option name='date' value="<?php echo date_format(date_sub(date_create(date("Y-m-d")), date_interval_create_from_date_string("5000 days")), "Y-m-d"); ?>">All</option>
                     <option name='date' value="<?php echo date("Y-m-d") ?>">Today</option>
@@ -19,7 +19,7 @@
                 </select></label>
         </div>
         <div class="col-8">
-            <label>enter custom date range - </label>
+            <label><?php echo $locale->_('datecustom') ?> - </label>
             <label for="start" class='px-2'> From - <input type="text" name="start" placeholder="YYYY-MM-DD " class='customDate' required disabled></label>
             <label for="end" class='px-2'> To - <input type="text" name="end" placeholder="YYYY-MM-DD " class='customDate' required disabled></label>
         </div>
@@ -39,10 +39,10 @@
 <table class="table">
     <thead class='bg-dark text-white fw-bold '>
         <tr>
-            <th scope="col">customer name</th>
-            <th scope="col">product_id</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">status</th>
+            <th scope="col"><?php echo $locale->_('customer') . " " . $locale->_('name') ?></th>
+            <th scope="col"><?php echo $locale->_('product_id') ?></th>
+            <th scope="col"><?php echo $locale->_('quantity') ?></th>
+            <th scope="col"><?php echo $locale->_('status') ?></th>
 
         </tr>
     </thead>

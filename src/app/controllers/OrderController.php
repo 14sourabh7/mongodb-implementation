@@ -7,6 +7,7 @@ class OrderController extends Controller
 {
     public function indexAction()
     {
+        $this->view->locale = $this->locale;
         if ($this->request->get('search')) {
 
             //calling search function of db
@@ -51,6 +52,7 @@ class OrderController extends Controller
      */
     public function addorderAction()
     {
+        $this->view->locale = $this->locale;
         if ($this->request->getPost()) {
             $data = $this->request->getPost();
             $data['date'] = date("Y-m-d");

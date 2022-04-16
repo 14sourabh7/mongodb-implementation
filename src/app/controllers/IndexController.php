@@ -8,7 +8,7 @@ class IndexController extends Controller
     public function indexAction()
     {
         $this->view->product = [];
-
+        $this->view->locale = $this->locale;
         if ($this->request->get('search')) {
             $products = $this->dbHelper->searchProductByName($this->request->get('search'));
         } else {
@@ -38,7 +38,7 @@ class IndexController extends Controller
     public function addproductAction()
     {
         $check = $this->request->isPost();
-
+        $this->view->locale = $this->locale;
         if ($check) {
 
             $this->dbHelper->addProduct($this->request->getPost());

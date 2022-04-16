@@ -49,11 +49,9 @@ $(document).ready(function () {
 function displayVariation(variation) {
   var html = `<label for="variation" class="form-label">Select Variaant </label><select name='variation' class='btn'>`;
   Object.entries(variation).map(function (item) {
-    Object.entries(item[1]).map(function (it) {
-      html += `
-        <option  name='variation' value="${item[0]} ${it[1].value}">${item[0]} - ${it[1].value}</option>
+    html += `
+        <option  name='variation' value="${item[0]}">${item[0]}</option>
         `;
-    });
   });
   html += "<select>";
   $(".variation").html(html);

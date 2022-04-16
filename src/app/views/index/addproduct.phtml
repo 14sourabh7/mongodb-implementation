@@ -6,31 +6,31 @@
 </div>
 
 
-<h2>Add Product</h2>
+<h2><?php echo $locale->_('add') . " " . $locale->_('product') ?></h2>
 <div class='row'>
     <div class="col-7 ">
         <form action="" method="post">
             <div id='addForm'>
                 <div class="mb-3">
-                    <label for="name" class="form-label">name</label>
+                    <label for="name" class="form-label"><?php echo $locale->_('name') ?></label>
                     <input type="text" class="form-control" name="name" aria-describedby="name" required>
                 </div>
                 <div class="mb-3">
-                    <label for="category" class="form-label">Category Name</label>
+                    <label for="category" class="form-label"><?php echo $locale->_('category') . " " . $locale->_('name') ?></label>
                     <input type="text" class="form-control" name='category' required>
                 </div>
                 <div class="mb-3">
-                    <label for="price" class="form-label">Price</label>
+                    <label for="price" class="form-label"><?php echo $locale->_('price') ?></label>
                     <input type="number" class="form-control" name='price' required>
                 </div>
                 <div class="mb-3">
-                    <label for="stock" class="form-label">Stock</label>
+                    <label for="stock" class="form-label"><?php echo $locale->_('stock') ?></label>
                     <input type="number" class="form-control" name='stock' required>
                 </div>
             </div>
 
 
-            <button type="submit" class="btn btn-primary btn-lg">ADD Product</button>
+            <button type="submit" class="btn btn-primary btn-lg"><?php echo $locale->_('add') . " " . $locale->_('product') ?></button>
         </form>
 
     </div>
@@ -39,13 +39,13 @@
 
     <div class='col-4 shadow-md bg-secondary'>
 
-        <h4>add additonal details</h4>
+        <h4><?php echo $locale->_('add') . " " . $locale->_('additional') . " " . $locale->_('details') ?></h4>
         <div class="row g-3">
 
             <div class="col-sm-7">
                 <div class="form-outline">
                     <input type="text" id="addLabel" class="form-control" />
-                    <label class="form-label" for="form10Example1">label</label>
+                    <label class="form-label" for="form10Example1"><?php echo $locale->_('label') ?></label>
                 </div>
             </div>
             <div class="col-sm">
@@ -68,21 +68,21 @@
 
         <div class="row g-3 shadow-md bg-secondary">
             <div class="col-sm-7">
-                <h4>add Variations</h4>
+                <h4><?php echo $locale->_('add') . " " . $locale->_('variations') ?></h4>
             </div>
 
 
             <div class="col-sm-7">
                 <div class="form-outline">
                     <input type="text" id="variationLabel" class="form-control" />
-                    <label class="form-label" for="form10Example1">variation label</label>
+                    <label class="form-label" for="form10Example1"><?php echo $locale->_('variation') . " " . $locale->_('label') ?></label>
                 </div>
             </div>
 
             <div class="col-sm-7">
                 <div class="form-outline">
                     <input type="number" id="variationPrice" class="form-control" />
-                    <label class="form-label" for="form10Example1">varaiation price</label>
+                    <label class="form-label" for="form10Example1"><?php echo $locale->_('variation') . " " . $locale->_('price') ?></label>
                 </div>
             </div>
 
@@ -90,7 +90,7 @@
                 <div class='row'>
                     <input type="text" id="variationValueName" placeholder="Name" class="form-control col mx-1" />
                     <input type="text" id="variationValue" placeholder="Value" class="form-control col mx-1" />
-                    <button type="button" id="addField" class='btn btn-success'>add field</button>
+                    <button type="button" id="addField" class='btn btn-success'><?php echo $locale->_('add') . " " . $locale->_('field') ?></button>
                 </div>
             </div>
             <div class="col-sm-7 py-3">
