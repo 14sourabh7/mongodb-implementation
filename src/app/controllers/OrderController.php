@@ -8,13 +8,14 @@ class OrderController extends Controller
     public function indexAction()
     {
         $this->view->locale = $this->locale;
-        if ($this->request->get('search')) {
+        // if ($this->request->get('search')) {
 
-            //calling search function of db
-            $orders = $this->dbHelper->searchOrderByName(
-                $this->request->get('search')
-            );
-        } else if ($this->request->get('statusfilter')) {
+        //     //calling search function of db
+        //     $orders = $this->dbHelper->searchOrderByName(
+        //         $this->request->get('search')
+        //     );
+        // } else
+        if ($this->request->get('statusfilter')) {
             $startdate = $this->request->get('start');
             $enddate = $this->request->get('end');
 
