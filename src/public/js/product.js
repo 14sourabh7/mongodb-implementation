@@ -15,7 +15,7 @@ $(document).ready(function () {
       if (additional.indexOf(label) === -1) {
         additional.push(label);
         var html = `
-          
+            <div>
              <label for="${label}" class="form-label">${label}</label>
             <input type="${type}" class="form-control" name='additional[${label}]' required>
             <button class='deleteAdd' data-idx=${additional.indexOf(
