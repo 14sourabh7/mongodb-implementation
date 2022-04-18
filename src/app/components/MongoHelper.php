@@ -218,8 +218,10 @@ class MongoHelper extends Injectable
     public function orderByDate($start, $end, $statusfilter)
     {
         if ($statusfilter == 'all') {
+
             return  $this->getDataByDate('orders', $start, $end);
         } else {
+
             return
                 $this->getDataByfilterDate($start, $end, $statusfilter);
         }
