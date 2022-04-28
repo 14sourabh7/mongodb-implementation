@@ -1,10 +1,13 @@
 <?php
+
+declare(strict_types=1);
+
 //db queries
 namespace App\Components;
 
 use Phalcon\Di\Injectable;
 
-class MongoHelper extends Injectable
+final class MongoHelper extends Injectable
 {
 
     /**
@@ -12,8 +15,8 @@ class MongoHelper extends Injectable
      * 
      * function to create  \MongoDB\BSON\ObjectID($id)
      *
-     * @param [type] $id
-     * @return void
+     * @param String $id
+     * @return object
      */
     private function createID($id)
     {
@@ -25,30 +28,20 @@ class MongoHelper extends Injectable
      * 
      * class function to find all from document
      *
-     * @param [type] $document
-     * @return void
+     * @param String $document
+     * @return array
      */
     private function getAll($document)
     {
-        return
-            $this->mongo->store->$document->find();
+        return $this->mongo->store->$document->find();
     }
 
-    /**
-     * getSingle($document, $id)
-     * 
-     * class function to find a single product or order
-     *
-     * @param [type] $document
-     * @param [type] $id
-     * @return object
-     */
+
     private function getSingle($document, $id)
     {
-        return
-            $this->mongo->store->$document->findOne([
-                '_id' => $this->createID($id)
-            ]);
+        return $this->mongo->store->$document->findOne([
+            '_id' => $this->createID($id)
+        ]);
     }
 
 
@@ -57,14 +50,13 @@ class MongoHelper extends Injectable
      * 
      * class function to search in db
      *
-     * @param [type] $document
-     * @param [type] $name
-     * @return void
+     * @param String $document
+     * @param String $name
+     * @return object
      */
     private function searchName($document, $name)
     {
-        return
-            $this->mongo->store->$document->find(['name' => $name]);
+        return $this->mongo->store->$document->find(['name' => $name]);
     }
 
     /**
@@ -72,8 +64,8 @@ class MongoHelper extends Injectable
      * 
      * class function to add data 
      *
-     * @param [type] $data
-     * @return void
+     * @param Array $data
+     * @return Void
      */
     private function addData($document, $data)
     {
@@ -85,10 +77,9 @@ class MongoHelper extends Injectable
      * 
      * class function to update data
      *
-     * @param [type] $document
-     * @param [type] $id
-     * @param [type] $data
-     * @return void
+     * @param String $document
+     * @param Array $data
+     * @return Void
      */
     private function updateData($document, $data)
     {
@@ -108,9 +99,9 @@ class MongoHelper extends Injectable
      * 
      * function to delete data
      *
-     * @param [type] $document
-     * @param [type] $id
-     * @return void
+     * @param String $document
+     * @param String $id
+     * @return Void
      */
     private function deleteData($document, $id)
     {
@@ -125,28 +116,27 @@ class MongoHelper extends Injectable
     /**
      * function to filter data by date only
      *
-     * @param [type] $document
-     * @param [type] $start
-     * @param [type] $end
-     * @return void
+     * @param String $document
+     * @param String $start 
+     * @param String $end
+     * @return array
      */
     private function getDataByDate($document, $start, $end)
     {
-        return  $this->mongo->store->$document->find(['date' => ['$gte' => $start, '$lte' => $end]]);
+        return $this->mongo->store->$document->find(['date' => ['$gte' => $start, '$lte' => $end]]);
     }
 
     /**
      * function to flter data by date and status
      *
-     * @param [type] $start
-     * @param [type] $end
-     * @param [type] $statusfilter
-     * @return void
+     * @param String $start
+     * @param String $end
+     * @param String $statusfilter
+     * @return array
      */
     private function getDataByfilterDate($start, $end, $statusfilter)
     {
-        return
-            $this->mongo->store->orders->find(['date' => ['$gte' => $start, '$lte' => $end], 'status' => $statusfilter]);
+        return $this->mongo->store->orders->find(['date' => ['$gte' => $start, '$lte' => $end], 'status' => $statusfilter]);
     }
 
 
@@ -157,33 +147,30 @@ class MongoHelper extends Injectable
 
     public function getAllProducts()
     {
-        return
-            $this->getAll('products');
+        return $this->getAll('products');
     }
 
     public function getProduct($id)
     {
-        return
-            $this->getSingle('products', $id);
+        return $this->getSingle('products', $id);
     }
 
     public function searchProductByName($name)
     {
-        return
-            $this->searchName('products', $name);
+        return $this->searchName('products', $name);
     }
 
-    public function addProduct($product)
+    public function addProduct($product): void
     {
         $this->addData('products', $product);
     }
 
-    public function updateProduct($data)
+    public function updateProduct($data): void
     {
         $this->updateData('products', $data);
     }
 
-    public function deleteProduct($id)
+    public function deleteProduct($id): void
     {
         $this->deleteData('products', $id);
     }
@@ -194,7 +181,7 @@ class MongoHelper extends Injectable
      * public functions for orders
      */
 
-    public function addOrder($data)
+    public function addOrder($data): void
     {
         $this->addData('orders', $data);
         $quantity = $data['quantity'];
@@ -205,25 +192,28 @@ class MongoHelper extends Injectable
     {
         return $this->searchName('orders', $name);
     }
-    public function getAllOrders()
-    {
-        return
-            $this->getAll('orders');
-    }
-    public function updateOrderStatus($data)
+
+    public function updateOrderStatus($data): void
     {
         $this->updateData('orders', $data);
     }
 
+
+    /**
+     * orderByDate($start, $end, $statusFilter)
+     *
+     * function to order by date
+     * 
+     * @param String $start
+     * @param String $end
+     * @param String $statusfilter
+     * @return Array
+     */
     public function orderByDate($start, $end, $statusfilter)
     {
-        if ($statusfilter == 'all') {
-
-            return  $this->getDataByDate('orders', $start, $end);
-        } else {
-
-            return
-                $this->getDataByfilterDate($start, $end, $statusfilter);
+        if ($statusfilter === 'all') {
+            return $this->getDataByDate('orders', $start, $end);
         }
+        return $this->getDataByfilterDate($start, $end, $statusfilter);
     }
 }

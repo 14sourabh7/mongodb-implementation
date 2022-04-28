@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index xmlns="http://xml.phpdox.net/src" basedir="/home/cedcoss/Desktop/Assignment/phalcon/mongodb-implementation/src/app">
+  <namespace name="App\Components">
+    <class name="MongoHelper" src="components/MongoHelper.php" xml="classes/App_Components_MongoHelper.xml"/>
+    <class name="Locale" src="components/Locale.php" xml="classes/App_Components_Locale.xml"/>
+  </namespace>
+  <namespace name="">
+    <class name="OrderController" src="controllers/OrderController.php" xml="classes/OrderController.xml"/>
+    <class name="IndexController" src="controllers/IndexController.php" xml="classes/IndexController.xml"/>
+  </namespace>
+</index>

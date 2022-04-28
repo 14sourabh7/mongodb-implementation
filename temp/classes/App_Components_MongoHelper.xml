@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="App\Components\MongoHelper" namespace="App\Components" name="MongoHelper" abstract="false" final="true" start="10" end="219">
+  <file path="./src/app/components" file="MongoHelper.php" realpath="/home/cedcoss/Desktop/Assignment/phalcon/mongodb-implementation/src/app/components/MongoHelper.php" size="4693" time="2022-04-28T10:17:37+00:00" unixtime="1651141057" sha1="9ac571fda639d55c6f59a263849bad561aa5305e" relative="components/MongoHelper.php"/>
+  <extends full="Phalcon\Di\Injectable" namespace="Phalcon\Di" name="Injectable" unresolved="true"/>
+  <method name="createID" start="21" end="24" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="createID($id)">function to create  \MongoDB\BSON\ObjectID($id)</description>
+      <param type="object" variable="$id">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <return type="object"/>
+    </docblock>
+    <parameter name="id" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getAll" start="34" end="37" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="getAll($document)">class function to find all from document</description>
+      <param type="object" variable="$document">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <return type="array"/>
+    </docblock>
+    <parameter name="document" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getSingle" start="40" end="45" abstract="false" final="false" static="false" visibility="private">
+    <parameter name="document" byreference="false" type="{unknown}"/>
+    <parameter name="id" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="searchName" start="57" end="60" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="searchName($document,$name)">class function to search in db</description>
+      <param type="object" variable="$document">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <param type="object" variable="$name">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <return type="object"/>
+    </docblock>
+    <parameter name="document" byreference="false" type="{unknown}"/>
+    <parameter name="name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="addData" start="70" end="73" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="addData($data)">class function to add data</description>
+      <param type="object" variable="$data">
+        <type full="App\Components\Array" namespace="App\Components" name="Array"/>
+      </param>
+      <return type="object">
+        <type full="App\Components\Void" namespace="App\Components" name="Void"/>
+      </return>
+    </docblock>
+    <parameter name="document" byreference="false" type="{unknown}"/>
+    <parameter name="data" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="updateData" start="84" end="95" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="updateData($id,$data)">class function to update data</description>
+      <param type="object" variable="$document">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <param type="object" variable="$data">
+        <type full="App\Components\Array" namespace="App\Components" name="Array"/>
+      </param>
+      <return type="object">
+        <type full="App\Components\Void" namespace="App\Components" name="Void"/>
+      </return>
+    </docblock>
+    <parameter name="document" byreference="false" type="{unknown}"/>
+    <parameter name="data" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="deleteData" start="106" end="113" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="deleteData($document,$id)">function to delete data</description>
+      <param type="object" variable="$document">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <param type="object" variable="$id">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <return type="object">
+        <type full="App\Components\Void" namespace="App\Components" name="Void"/>
+      </return>
+    </docblock>
+    <parameter name="document" byreference="false" type="{unknown}"/>
+    <parameter name="id" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getDataByDate" start="124" end="127" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="function to filter data by date only"/>
+      <param type="object" variable="$document">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <param type="object" variable="$start">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <param type="object" variable="$end">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <return type="array"/>
+    </docblock>
+    <parameter name="document" byreference="false" type="{unknown}"/>
+    <parameter name="start" byreference="false" type="{unknown}"/>
+    <parameter name="end" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getDataByfilterDate" start="137" end="140" abstract="false" final="false" static="false" visibility="private">
+    <docblock>
+      <description compact="function to flter data by date and status"/>
+      <param type="object" variable="$start">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <param type="object" variable="$end">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <param type="object" variable="$statusfilter">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <return type="array"/>
+    </docblock>
+    <parameter name="start" byreference="false" type="{unknown}"/>
+    <parameter name="end" byreference="false" type="{unknown}"/>
+    <parameter name="statusfilter" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getAllProducts" start="148" end="151" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="public functions for products"/>
+    </docblock>
+  </method>
+  <method name="getProduct" start="153" end="156" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="id" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="searchProductByName" start="158" end="161" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="addProduct" start="163" end="166" abstract="false" final="false" static="false" visibility="public">
+    <return type="void" nullable="false"/>
+    <parameter name="product" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="updateProduct" start="168" end="171" abstract="false" final="false" static="false" visibility="public">
+    <return type="void" nullable="false"/>
+    <parameter name="data" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="deleteProduct" start="173" end="176" abstract="false" final="false" static="false" visibility="public">
+    <return type="void" nullable="false"/>
+    <parameter name="id" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="addOrder" start="184" end="190" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="public functions for orders"/>
+    </docblock>
+    <return type="void" nullable="false"/>
+    <parameter name="data" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="searchOrderByName" start="191" end="194" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="updateOrderStatus" start="196" end="199" abstract="false" final="false" static="false" visibility="public">
+    <return type="void" nullable="false"/>
+    <parameter name="data" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="orderByDate" start="212" end="218" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="orderByDate($start, $end, $statusFilter)">function to order by date</description>
+      <param type="object" variable="$start">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <param type="object" variable="$end">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <param type="object" variable="$statusfilter">
+        <type full="App\Components\String" namespace="App\Components" name="String"/>
+      </param>
+      <return type="object">
+        <type full="App\Components\Array" namespace="App\Components" name="Array"/>
+      </return>
+    </docblock>
+    <parameter name="start" byreference="false" type="{unknown}"/>
+    <parameter name="end" byreference="false" type="{unknown}"/>
+    <parameter name="statusfilter" byreference="false" type="{unknown}"/>
+  </method>
+</class>

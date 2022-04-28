@@ -1,24 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 use Phalcon\Mvc\Controller;
 
-
-class OrderController extends Controller
+final class OrderController extends Controller
 {
-    public function indexAction()
+    public function indexAction(): void
     {
         $this->view->locale = $this->locale;
-        // if ($this->request->get('search')) {
 
-        //     //calling search function of db
-        //     $orders = $this->dbHelper->searchOrderByName(
-        //         $this->request->get('search')
-        //     );
-        // } else
         if ($this->request->get('statusfilter')) {
             $startdate = $this->request->get('start');
             $enddate = $this->request->get('end');
-
 
             if ($startdate && $enddate) {
                 $orders = $this->dbHelper->orderByDate($startdate, $enddate, $this->request->get('statusfilter'));
@@ -29,29 +23,15 @@ class OrderController extends Controller
                     $this->request->get('statusfilter')
                 );
             }
-        } else if ($this->request->get('btn') == 'custom') {
-
-            //custom date filter
-
-
         } else {
-
             //bydefault displaying all orders
-            $orders = $this->dbHelper->getAllOrders();
+            $orders = $this->dbHelper->getAll('orders');
         }
         $this->view->orders = $orders;
     }
 
 
-
-    /**
-     * addorderAction()
-     * 
-     * function to add a new order
-     *
-     * @return void
-     */
-    public function addorderAction()
+    public function addorderAction(): void
     {
         $this->view->locale = $this->locale;
         if ($this->request->getPost()) {
@@ -62,34 +42,20 @@ class OrderController extends Controller
         }
     }
 
-
     /**
-     * getproductsAction()
-     * 
-     * function to get products to display in order form
+     * getProductsAction()
      *
-     * @return void
+     * @return String
      */
     public function getproductsAction()
     {
-        $products = $this->dbHelper->getAllProducts();
-
-        $response = [];
-        foreach ($products as $product => $details) {
-            array_push($response, $details);
-        }
-        return json_encode($response);
+        $products = $this->dbHelper->getAllProducts()->toArray();
+        $products = json_encode($products);
+        return str_replace('$oid', 'oid', $products);
     }
 
 
-    /**
-     * updatestatusAction()
-     * 
-     * action to update the status of order
-     *
-     * @return void
-     */
-    public function updatestatusAction()
+    public function updatestatusAction(): void
     {
         $data = $this->request->get();
 

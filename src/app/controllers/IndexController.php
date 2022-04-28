@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 use Phalcon\Mvc\Controller;
 
 
-class IndexController extends Controller
+final class IndexController extends Controller
 {
-    public function indexAction()
+    public function indexAction(): void
     {
         $this->view->product = [];
         $this->view->locale = $this->locale;
@@ -18,50 +20,34 @@ class IndexController extends Controller
         $this->view->products = $products;
 
         //handling delete  and update request
-        if ($this->request->getPost('btn') == 'update') {
-            $this->dbHelper->updateProduct($this->request->getPost());
-        } else if ($this->request->getPost('btn') == 'delete') {
-
-            $this->dbHelper->deleteProduct($this->request->getPost('id'));
+        if ($this->request->getPost('btn') === 'update') {
+            $func = $this->request->getPost('btn') . "Product";
+            $this->dbHelper->$func($this->request->getPost());
             $this->response->redirect();
         }
     }
 
 
-    /**
-     * addproductAction()
-     * 
-     * function to add product in database
-     *
-     * @return void
-     */
-    public function addproductAction()
+
+    public function addproductAction(): void
     {
         $check = $this->request->isPost();
         $this->view->locale = $this->locale;
         if ($check) {
-
             $this->dbHelper->addProduct($this->request->getPost());
             $this->response->redirect('/');
         }
     }
 
 
-    /**
-     * viewproductAction()
-     *
-     * function returning single product data to a ajax request
-     * 
-     * @return json
-     */
+
     public function viewproductAction()
     {
+
         $id = $this->request->getPost('id');
         if ($id) {
-            $product =  $this->dbHelper->getProduct($id);
-        } else {
-            $this->response->redirect('/');
+            return json_encode($this->dbHelper->getProduct($id));
         }
-        return json_encode($product);;
+        $this->response->redirect('/');
     }
 }

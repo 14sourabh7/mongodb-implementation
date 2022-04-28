@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Components;
 
 use Phalcon\Di\Injectable;
@@ -7,11 +9,10 @@ use Phalcon\Translate\Adapter\NativeArray;
 use Phalcon\Translate\InterpolatorFactory;
 use Phalcon\Translate\TranslateFactory;
 
-class Locale extends Injectable
+
+
+final class Locale extends Injectable
 {
-    /**
-     * @return NativeArray
-     */
     public function getTranslator(): NativeArray
     {
         // Ask browser what is the best language
@@ -20,7 +21,7 @@ class Locale extends Injectable
 
         $translationFile = '../app/messages/' . $language . '.php';
 
-        if (true !== file_exists($translationFile)) {
+        if (file_exists($translationFile) !== true) {
             $translationFile = '../app/messages/en.php';
         }
 

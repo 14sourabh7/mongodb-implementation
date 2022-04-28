@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 // app/messages/en.php
-$messages = [
+return [
     'add' => 'add',
     'products' => 'products',
     'product' => 'product',

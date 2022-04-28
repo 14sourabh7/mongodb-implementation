@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="App\Components\Locale" namespace="App\Components" name="Locale" abstract="false" final="true" start="14" end="40">
+  <file path="./src/app/components" file="Locale.php" realpath="/home/cedcoss/Desktop/Assignment/phalcon/mongodb-implementation/src/app/components/Locale.php" size="925" time="2022-04-28T09:24:50+00:00" unixtime="1651137890" sha1="b16dde7da0e8d7eb1424da38ea7e86c864d202a4" relative="components/Locale.php"/>
+  <extends full="Phalcon\Di\Injectable" namespace="Phalcon\Di" name="Injectable" unresolved="true"/>
+  <method name="getTranslator" start="16" end="39" abstract="false" final="false" static="false" visibility="public">
+    <return type="object" nullable="false">
+      <type full="Phalcon\Translate\Adapter\NativeArray" namespace="Phalcon\Translate\Adapter" name="NativeArray"/>
+    </return>
+    <inline>
+      <comment value="Ask browser what is the best language" line="18"/>
+    </inline>
+  </method>
+</class>
